@@ -15,6 +15,16 @@ export function beginDrag(props, _, component) {
   };
 }
 
+function endDrag(props, monitor, component) {
+  // added to still dispatch dropRow when row in dropped outside a row dropTarget
+  const dropResult = monitor.getDropResult();
+  if (!dropResult) {
+    const item = monitor.getItem();
+    const { rowId, rowIndex, listIndex, listId = null } = item;
+    props.dropRow({ rowId: rowId, listId: listId, rowIndex: rowIndex, listIndex: listIndex });
+  }
+}
+
 export function isDragging({ rowId }, monitor) {
    const draggingRowId = monitor.getItem().rowId;
 
