@@ -15,7 +15,7 @@ export function beginDrag(props, _, component) {
   };
 }
 
-function endDrag(props, monitor, component) {
+export function endDrag(props, monitor, component) {
   // added to still dispatch dropRow when row in dropped outside a row dropTarget
   const dropResult = monitor.getDropResult();
   if (!dropResult) {
